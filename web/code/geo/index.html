@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">	
+        <title>Geolocation test</title>
+        <style>
+            body { font-family: sans-serif; }
+            html, body, #map { margin: 0; padding: 0; height: 100%; }
+            p { font-size: 1.8em; }
+        </style>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    </head>
+    <body>
+        <div id="error"></div>
+        <div id="map"></div>
+        <script>
+            var map;
+            var error = document.getElementById("error");
+
+            var mapOptions = {
+                zoom: 15,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var geoOptions = {
+                enableHighAccuracy: true,
+                maximumAge: 1000
+            };
+
+            function initialize() {
+
+                if (navigator.geolocation) {
+
+                    error.innerHTML = "Detecting location...";
+
+                    navigator.geolocation.watchPosition(function(a) {
+                        // Success function
+                        error.innerHTML = "";
+
+                        // Update form data
+                        var c = a.coords;
+
+                        // Update map
+                        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                        var latlng = new google.maps.LatLng(c.latitude, c.longitude);
+                        map.setCenter(latlng);
+
+                        // Info window
+                        var message = "<p>Longitude " + c.longitude + "<br>Latitude " + c.latitude +
+                                "</p><p>Accuracy to " + c.accuracy + " meters.</p>";
+
+                        var infowindow = new google.maps.InfoWindow({
+                            map: map,
+                            position: latlng,
+                            content: message
+                        });
+
+                    }, function(e) {
+                        // Error function
+                        error.innerHTML = "Error Code: " + e.code + " Message: " + e.message;
+                    }, geoOptions);
+
+                } else {
+                    error.innerHTML = "Sorry, your browser doesn't support geolocation!";
+                }
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>
+    </body>
+</html>
