@@ -1,0 +1,24 @@
+/*
+Theme Name: 	simonrjones v3
+Theme URI:		http://www.simonrjones.net/
+Description: 	SRJ site theme
+Template:		twentyfifteen
+Version: 		3.0
+Author: 		Simon R Jones
+Author URI: 	http://www.simonrjones.net/
+*/
+
+
+/* Fonts */
+body, button, input, select, textarea {
+	font-family: Garamond, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, 
+.site-title, .widget-title, .entry-footer {
+	font-family: Futura, Arial, sans-serif;
+}
+
+h1, h2 {
+
+}
