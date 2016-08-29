@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Play</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFontConfig = {
+            google: {
+                families: ['Open Sans', 'Open Sans:300', 'Open Sans:600', 'Source Code Pro']
+            }
+        };
+        (function(d) {
+            var wf = d.createElement('script'), s = d.scripts[0];
+            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js';
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
+    <style>
+        /* Global */
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.2em;
+        }
+
+        /* Header */
+        header {
+            width: 100%;
+            margin: 0;
+            padding: 0.2em 0.4em 0 0;
+            border-top: 10px solid #F60;
+            background-color: #EEE;
+        }
+        header h1 {
+            color: #787878;
+            line-height: 0.75em;
+            margin: 0;
+            padding: 0;
+            font-size: 2em;
+            margin: 0;
+            position: relative;
+            z-index: 5;
+        }
+        nav {
+            width: 100%;
+            height: 2.2em;
+            font-size: 1em;
+            background-color: #FFF;
+            border-top: 1px solid #CCC;
+            border-bottom: 1px solid #CCC;
+        }
+        nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        nav ul li {
+            float: left;
+            position: relative;
+            z-index: 10;
+            margin-top: 0.4em;
+        }
+        nav a {
+            padding: 0.2em 1.2em;
+            text-decoration: none;
+        }
+        nav a:first-child {
+            padding-left: 0;
+        }
+        nav a, nav a:visited {
+            color: #777;
+        }
+        nav a:hover, nav a:active {
+            color: #444;
+            text-decoration: underline;
+        }
+        header h1, header nav ul, main, footer {
+            width: 85%;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        main {
+            padding: 0 1em;
+            background-color: #FFF;
+        }
+        footer {
+            margin-top: 2.4em;
+            padding: 0;
+            border-top: 1px solid #CCC;
+            font-size: 0.8em;
+            color: #555;
+        }
+        footer p {
+            margin: 0.4em 0 0 0;
+        }
+        footer nav {
+            border: 0;
+            color: #777;
+        }
+        footer ul li {
+            margin-top: 0.2em;
+        }
+
+        /* Content */
+        main {
+            line-height: 1.41em;
+        }
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.15em;
+        }
+        h2 {
+            font-size: 3.1em;
+            font-weight: 300;
+            margin: 1.2em 0 0.6em 0;
+        }
+        .sub-header {
+            font-weight: 300;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+        h3 {
+            font-size: 1.4em;
+            margin-bottom: 0.5em;
+        }
+        p {
+            margin-top: 0;
+        }
+        a {
+            color: #2E37D8;
+        }
+        a:visited {
+            color: #202798;
+        }
+        a:hover, a:active {
+            color: #2766EF;
+        }
+        code {
+            font-family: 'Source Code Pro', monospace;
+        }
+        pre {
+            white-space: pre-wrap;
+            tab-width: 4;
+        }
+
+        /* Responsive */
+        @media only screen and (max-width: 500px) {
+            header h1, header nav ul, main, footer {
+                width: 90%;
+            }
+            header {
+                border-top: 8px solid #F60;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            nav {
+                font-size: 0.9em;
+            }
+            footer {
+                margin-top: 1.8em;
+            }
+            footer nav {
+                font-size: 1em;
+            }
+            nav a {
+                padding: 0.2em 0.8em;
+            }
+            main h2 {
+                font-size: 2.6em;
+            }
+        }
+    </style>
+    <link href="prism.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <h1>simon r jones</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/talks/">Talks</a></li>
+                <li><a href="/community/">Community</a></li>
+                <li><a href="/code/">Code</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Thoughtless sausages in the isle of the future</h2>
+        <p class="sub-header">I am a sub-header and I'm fine</p>
+        <p>I am here and there and there but here not there not then. A big block of text going over some lines. I am here and there and there but here not there not then. A big block of text going over some lines. I am here and there and there but here not there not then. A big block of text going over some lines.</p>
+        <p>I am here and there and there. <a href="somewhere">I am a link</a>. <a href="/">I am a link</a>. But here not there not then.</p>
+        <h3>Some code</h3>
+        <p>Some code</p>
+        <pre><code class="language-js line-numbers">&lt;script&gt;
+    // Detect JS support
+    document.body.className = document.body.className + " js_enabled";
+&lt;/script&gt;</code></pre>
+    </main>
+    <footer>
+        <p>© 2007-2016, Simon R Jones</p>
+        <nav>
+            <ul>
+                <li><a href="http://www.studio24.net">Studio 24</a></li>
+                <li><a href="https://github.com/simonrjones">GitHub</a></li>
+                <li><a href="https://twitter.com/simonrjones">Twitter</a></li>
+                <li><a href="https://www.flickr.com/photos/simonrjones">Flickr</a></li>
+                <li><a href="https://uk.linkedin.com/in/simonrjones">LinkedIn</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <!-- JS -->
+    <script src="prism.js"></script>
+</body>
+</html>
