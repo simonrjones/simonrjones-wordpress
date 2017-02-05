@@ -3,25 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Play</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-    <script>
-        WebFontConfig = {
-            google: {
-                families: ['Open Sans', 'Open Sans:300', 'Open Sans:600', 'Source Code Pro']
-            }
-        };
-        (function(d) {
-            var wf = d.createElement('script'), s = d.scripts[0];
-            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js';
-            s.parentNode.insertBefore(wf, s);
-        })(document);
-
+    <!-- Web font, use 200,300,600 weights -->
+    <script src="https://use.typekit.net/aom6qzc.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
     <style>
         /* Global */
         body {
             padding: 0;
             margin: 0;
-            font-family: 'Open Sans', sans-serif;
+            font-family: "jaf-domus", Arial, sans-serif;
+            font-weight: 300;
             font-size: 1.2em;
         }
 
@@ -29,26 +20,17 @@
         header {
             width: 100%;
             margin: 0;
-            padding: 1em 0.4em 0 0;
+            padding: 0 0.4em 0 0;
             border-top: 10px solid #F60;
-        }
-        header h1 {
-            color: #575757;
-            line-height: 0.75em;
-            margin: 0;
-            padding: 0;
-            font-size: 2em;
-            font-weight: normal;
-            margin: 0;
-            position: relative;
-            z-index: 5;
+
         }
         header nav {
+            font-weight: 200;
             width: 100%;
             height: 2.2em;
             font-size: 1em;
             background-color: #FFF;
-            border-top: 1px solid #CCC;
+            /* border-top: 1px solid #CCC; */
             border-bottom: 1px solid #CCC;
             -webkit-box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.1);
             -moz-box-shadow: 0px 3px 20px 0px rgba(0,0,0,0.1);
@@ -65,8 +47,19 @@
             z-index: 10;
             margin-top: 0.4em;
         }
+        nav .site-title-big,
+        nav .site-title-small {
+            font-weight: 600;
+        }
+        nav .site-title-small {
+            display: none;
+        }
+        nav .separator {
+            color: #777;
+            padding-right: 0.85em;
+        }
         nav a {
-            padding: 0.2em 1.2em;
+            padding: 0.2em 0.85em;
             text-decoration: none;
         }
         nav a:first-child {
@@ -94,6 +87,7 @@
             border-top: 1px solid #CCC;
             font-size: 0.8em;
             color: #555;
+            height: 3.4em;
         }
         footer p {
             margin: 0.4em 0 0 0;
@@ -111,17 +105,15 @@
             line-height: 1.46em;
         }
         h1, h2, h3 {
-            font-weight: 600;
             line-height: 1.15em;
+            font-weight: 600;
         }
-        h2 {
+        h1 {
             font-size: 3.1em;
-            font-weight: 300;
             margin: 1.2em 0 0.6em 0;
         }
         .sub-header {
-            font-weight: 300;
-            font-size: 1.2em;
+            font-weight: 200;
             font-style: italic;
         }
         h3 {
@@ -149,18 +141,22 @@
         }
 
         /* Responsive */
-        @media only screen and (max-width: 500px) {
+        @media only screen and (max-width: 590px) {
             header h1, header nav ul, main, footer {
                 width: 90%;
             }
             header {
+                font-size: 90%;
                 border-top: 8px solid #F60;
             }
-            header h1 {
-                font-size: 1.8em;
+            nav .site-title-big {
+                display: none;
             }
-            header nav {
-                font-size: 0.85em;
+            nav .site-title-small {
+                display: inline;
+            }
+            main {
+                font-size: 95%;
             }
             footer {
                 margin-top: 1.8em;
@@ -168,14 +164,13 @@
             footer nav {
                 font-size: 1em;
             }
+        }
+        @media only screen and (max-width: 490px) {
+            nav .separator {
+                padding-right: 0.6em;
+            }
             nav a {
-                padding: 0.2em 0.8em;
-            }
-            main {
-                font-size: 0.95em;
-            }
-            main h2 {
-                font-size: 2.6em;
+                padding: 0.2em 0.6em;
             }
         }
     </style>
@@ -183,19 +178,21 @@
 </head>
 <body>
     <header>
-        <h1>simon r jones</h1>
+        <!-- <h1>simon r jones</h1> -->
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/talks/">Talks</a></li>
-                <li><a href="/community/">Community</a></li>
-                <li><a href="/code/">Code</a></li>
-                <li><a href="/about/">About</a></li>
+                <li class="site-title-big"><a href="/">simon r jones</a> <span class="separator">/</span></li>
+                <li class="site-title-small"><a href="/">srj</a> <span class="separator">/</span></li>
+                <li><a href="/about/">about</a></li>
+                <li><a href="/archive/">archive</a></li>
+                <li><a href="/talks/">talks</a></li>
+                <li><a href="/community/">community</a></li>
+                <li><a href="/code/">code</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <h2>Thoughtless sausages in the isle of the future</h2>
+        <h1>My long title about something really interesting probably CMS modular content creation or something</h1>
         <p class="sub-header">I am a sub-header and I'm fine</p>
         <p>I am here and there and there but here not there not then. A big block of text going over some lines. I am here and there and there but here not there not then. A big block of text going over some lines. I am here and there and there but here not there not then. A big block of text going over some lines.</p>
         <p>I am here and there and there. <a href="somewhere">I am a link</a>. <a href="/">I am a link</a>. But here not there not then.</p>
