@@ -22,3 +22,4 @@ composer.lock
 web_old
 web/jemma
 web/richardavis
+web/wp-config.local.php
