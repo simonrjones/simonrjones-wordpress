@@ -26,12 +26,12 @@ $env = [
     'production'  => [
         'domain' => 'www.simonrjones.net',
         'path'   => '',
-        'ssl'    => true,
+        'ssl'    => false,
     ],
     'staging'     => [
         'domain' => 'staging.simonrjones.net',
         'path'   => '',
-        'ssl'    => true,
+        'ssl'    => false,
     ],
     'development' => [
         'domain' => 'local.simonrjones.net',

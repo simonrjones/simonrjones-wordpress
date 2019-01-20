@@ -13,7 +13,7 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** MySQL hostname */
-define('DB_HOST', '*****');
+define('DB_HOST', 'rds.net_1.singlecloud1.studio24cloud.net');
 
 /** The name of the database for WordPress */
 define('DB_NAME', 'simonrjones_staging');

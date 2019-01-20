@@ -62,4 +62,4 @@ define('WPLANG', '');
 /**
  * Increase memory limit. 
  */
-define('WP_MEMORY_LIMIT', '64M');
+define('WP_MEMORY_LIMIT', '128M');
