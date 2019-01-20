@@ -24,7 +24,7 @@
  */
 $env = [
     'production'  => [
-        'domain' => 'www.simonrjones.net',
+        'domain' => 'simonrjones.net',
         'path'   => '',
         'ssl'    => false,
     ],
