@@ -13,7 +13,7 @@ set('repository', 'git@bitbucket.org:simonrjones/simonrjones.net.git');
 set('git_tty', true);
 
 // Shared files/dirs between deploys
-set('shared_files', ['config/wp-config.local.php']);
+set('shared_files', ['web/wp-config.local.php']);
 set('shared_dirs', ['web/wp-content/uploads']);
 
 // Writable dirs by web server
