@@ -6,7 +6,7 @@
  *
  * @package WordPress
  * @subpackage Twenty_Seventeen
- * @since 1.0
+ * @since Twenty Seventeen 1.0
  * @version 1.2
  */
 
@@ -28,8 +28,8 @@
 				echo twentyseventeen_time_link();
 				twentyseventeen_edit_link();
 			}
-				echo '</div><!-- .entry-meta -->';
-		};
+			echo '</div><!-- .entry-meta -->';
+		}
 
 		if ( is_single() ) {
 			the_title( '<h1 class="entry-title">', '</h1>' );
@@ -46,7 +46,7 @@
 		$video   = false;
 
 		// Only get video from the content if a playlist isn't present.
-	if ( false === strpos( $content, 'wp-playlist-script' ) ) {
+	if ( ! str_contains( $content, 'wp-playlist-script' ) ) {
 		$video = get_media_embedded_in_content( $content, array( 'video', 'object', 'embed', 'iframe' ) );
 	}
 	?>
@@ -71,15 +71,14 @@
 						echo $video_html;
 					echo '</div>';
 				}
-			};
-
-		};
+			}
+		}
 
 		if ( is_single() || empty( $video ) ) {
 
-			/* translators: %s: Name of current post */
 			the_content(
 				sprintf(
+					/* translators: %s: Post title. Only visible to screen readers. */
 					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'twentyseventeen' ),
 					get_the_title()
 				)
@@ -93,7 +92,7 @@
 					'link_after'  => '</span>',
 				)
 			);
-		};
+		}
 		?>
 
 	</div><!-- .entry-content -->

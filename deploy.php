@@ -26,14 +26,15 @@ set('keep_releases', 10);
 // Hosts
 
 host('production')
-    ->hostname('simonrjones')
-    ->user('ec2-user')
+    ->stage('production')
+    ->hostname('63.33.41.34')
+    ->user('deploy')
     ->set('deploy_path','/data/var/www/vhosts/simonrjones.net/production');
 
 host('staging')
     ->stage('staging')
-    ->hostname('simonrjones')
-    ->user('ec2-user')
+    ->hostname('63.33.41.34')
+    ->user('deploy')
     ->set('deploy_path','/data/var/www/vhosts/simonrjones.net/staging');
 
 

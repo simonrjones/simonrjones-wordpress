@@ -9,7 +9,6 @@
         }
     ],
     "config": {
-        "title" : "Trending",
         "shorten_title": {
             "active": false
         },
@@ -35,7 +34,7 @@
         "markup": {
             "wpp-start": "<ul class=\"wpp-list wpp-tiny\">",
             "wpp-end": "</ul>",
-            "post-html": "<li><div class=\"wpp-item-data\">{category}</div> {title}</li>"
+            "post-html": "<li class=\"{current_class}\"><div class=\"wpp-item-data\">{category}</div> {title}</li>"
         }
     }
 }

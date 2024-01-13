@@ -79,14 +79,14 @@ class Application_Passwords {
 	 * @static
 	 */
 	public static function rest_api_init() {
-		// List existing application passwords
+		// List existing application passwords.
 		register_rest_route( '2fa/v1', '/application-passwords/(?P<user_id>[\d]+)', array(
 			'methods' => WP_REST_Server::READABLE,
 			'callback' => __CLASS__ . '::rest_list_application_passwords',
 			'permission_callback' => __CLASS__ . '::rest_edit_user_callback',
 		) );
 
-		// Add new application passwords
+		// Add new application passwords.
 		register_rest_route( '2fa/v1', '/application-passwords/(?P<user_id>[\d]+)/add', array(
 			'methods' => WP_REST_Server::CREATABLE,
 			'callback' => __CLASS__ . '::rest_add_application_password',
@@ -98,14 +98,14 @@ class Application_Passwords {
 			),
 		) );
 
-		// Delete an application password
+		// Delete an application password.
 		register_rest_route( '2fa/v1', '/application-passwords/(?P<user_id>[\d]+)/(?P<slug>[\da-fA-F]{12})', array(
 			'methods' => WP_REST_Server::DELETABLE,
 			'callback' => __CLASS__ . '::rest_delete_application_password',
 			'permission_callback' => __CLASS__ . '::rest_edit_user_callback',
 		) );
 
-		// Delete all application passwords for a given user
+		// Delete all application passwords for a given user.
 		register_rest_route( '2fa/v1', '/application-passwords/(?P<user_id>[\d]+)', array(
 			'methods' => WP_REST_Server::DELETABLE,
 			'callback' => __CLASS__ . '::rest_delete_all_application_passwords',
@@ -116,6 +116,7 @@ class Application_Passwords {
 		register_rest_route( '2fa/v1', '/test-basic-authorization-header/', array(
 			'methods' => WP_REST_Server::READABLE . ', ' . WP_REST_Server::CREATABLE,
 			'callback' => __CLASS__ . '::rest_test_basic_authorization_header',
+			'permission_callback' => '__return_true',
 		) );
 	}
 
@@ -249,7 +250,7 @@ class Application_Passwords {
 	 * @return WP_User|bool
 	 */
 	public static function rest_api_auth_handler( $input_user ){
-		// Don't authenticate twice
+		// Don't authenticate twice.
 		if ( ! empty( $input_user ) ) {
 			return $input_user;
 		}
@@ -390,6 +391,9 @@ class Application_Passwords {
 				$item['last_ip']   = $_SERVER['REMOTE_ADDR'];
 				$hashed_passwords[ $key ] = $item;
 				update_user_meta( $user->ID, self::USERMETA_KEY_APPLICATION_PASSWORDS, $hashed_passwords );
+
+				do_action( 'application_password_did_authenticate', $user, $item );
+
 				return $user;
 			}
 		}
@@ -569,7 +573,9 @@ class Application_Passwords {
 				'nonce'     => wp_create_nonce( 'wp_rest' ),
 				'user_id'   => $user->ID,
 				'text'      => array(
-					'no_credentials' => __( 'Due to a potential server misconfiguration, it seems that HTTP Basic Authorization may not work for the REST API on this site: `Authorization` headers are not being sent to WordPress by the web server. <a href="https://github.com/georgestephanis/application-passwords/wiki/Basic-Authorization-Header----Missing">You can learn more about this problem, and a possible solution, on our GitHub Wiki.</a>' ),
+					'no_credentials'       => __( 'Due to a potential server misconfiguration, it seems that HTTP Basic Authorization may not work for the REST API on this site: `Authorization` headers are not being sent to WordPress by the web server. <a href="https://github.com/georgestephanis/application-passwords/wiki/Basic-Authorization-Header----Missing">You can learn more about this problem, and a possible solution, on our GitHub Wiki.</a>' ),
+					'revoke_password'      => esc_attr__( 'Are you sure you want to revoke this password? This action cannot be undone.' ),
+					'revoke_all_passwords' => esc_attr__( 'Are you sure you want to revoke all passwords? This action cannot be undone.' ),
 				),
 			)
 		);
@@ -619,6 +625,7 @@ class Application_Passwords {
 			<tr data-slug="{{ data.slug }}">
 				<td class="name column-name has-row-actions column-primary" data-colname="<?php esc_attr_e( 'Name' ); ?>">
 					{{ data.name }}
+					<button type="button" class="toggle-row"><span class="screen-reader-text"><?php esc_html_e( 'Show more details' ); ?></span></button>
 				</td>
 				<td class="created column-created" data-colname="<?php esc_attr_e( 'Created' ); ?>">
 					{{ data.created }}
@@ -728,7 +735,7 @@ class Application_Passwords {
 	}
 
 	/**
-	 * Generate a unique repeateable slug from the hashed password, name, and when it was created.
+	 * Generate a unique repeatable slug from the hashed password, name, and when it was created.
 	 *
 	 * @since 0.1-dev
 	 *

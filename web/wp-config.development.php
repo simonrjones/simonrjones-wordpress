@@ -19,7 +19,7 @@ define('DB_NAME', 'simonrjones_dev');
 define('DB_USER', 'root');
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+define('DB_HOST', '127.0.0.1');
 
 
 /** MySQL database password - set in wp-config.local.php */

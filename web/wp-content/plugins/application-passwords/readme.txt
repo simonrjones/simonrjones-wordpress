@@ -1,8 +1,8 @@
 === Application Passwords ===
-Contributors: georgestephanis, valendesigns, kraftbj, kasparsd
+Contributors: georgestephanis, valendesigns, kraftbj, kasparsd, passoniate
 Tags: application-passwords, rest api, xml-rpc, security, authentication
 Requires at least: 4.4
-Tested up to: 5.3
+Tested up to: 5.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -11,6 +11,10 @@ Creates unique passwords for applications to authenticate users without revealin
 
 
 == Description ==
+
+**⚠️ IMPORTANT: This plugin has been merged into WordPress core version 5.6 and doesn't have to be installed separately. [View the integration guide →](https://make.wordpress.org/core/2020/11/05/application-passwords-integration-guide/)**
+
+---
 
 Use Application Passwords to authenticate users without providing their passwords directly. Instead, a unique password is generated for each application without revealing the user's main password. Application passwords can be revoked for each application individually.
 
@@ -34,11 +38,18 @@ Use Application Passwords to authenticate users without providing their password
 
 = Two Factor Support =
 
-Application Passwords can be used together with the [Two Factor plugin](https://wordpress.org/plugins/two-factor/) as long as you disable the extra protection added by the Two Factor plugin which disables API requests with password authentication _for users with Two Factor enabled_.
+Application Passwords can be used together with the [Two Factor plugin](https://wordpress.org/plugins/two-factor/) as long as you bypass the API acccess restrictions added by the Two Factor plugin. Those protections disable API requests with password authentication _for users with Two Factor enabled_.
 
-Use the `two_factor_user_api_login_enable` filter to allow API requests with password-based authentication header for all users:
+Use the `two_factor_user_api_login_enable` filter to allow API requests authenticated using an application passwords:
 
-    add_filter( 'two_factor_user_api_login_enable', '__return_true' );
+    add_filter( 'two_factor_user_api_login_enable', function( $enable ) {
+        // Allow API login when using an application password even with 2fa enabled.
+        if ( did_action( 'application_password_did_authenticate' ) ) {
+            return true;
+        }
+
+        return $enable;
+    } );
 
 This is not required if the user associated with the application password doesn't have any of the Two Factor methods enabled.
 
